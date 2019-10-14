@@ -75,7 +75,7 @@ export default class Lobby extends Component {
                   })
                 }
               >
-                obby
+                obbyhi
               </Text>
             </Title>
           </Body>
