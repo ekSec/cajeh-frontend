@@ -20,6 +20,7 @@ const AppNavigator = createStackNavigator({
     screen: MyPublish,
     navigationOptions: () => ({
       header: null,
+      footer: null,
     }),
   },
   MyMaterial: {

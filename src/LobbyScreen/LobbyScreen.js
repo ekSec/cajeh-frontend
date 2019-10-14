@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {Component} from 'react';
+import React, { Component } from "react";
 import {
   Container,
   Header,
@@ -11,15 +11,13 @@ import {
   Body,
   Icon,
   Fab,
-  Text as NewText,
-  Footer,
-  FooterTab,
-} from 'native-base';
-import { Button, Text, View, TouchableOpacity } from "react-native";
-import Share from 'react-native-share';
+  Text as NewText
+} from "native-base";
+import { Text, View, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
-import Publish from '../Components/Publish.js';
-import {material} from 'react-native-typography';
+import Publish from "../Components/Publish.js";
+import CajehButton from "../Components/CajehButton.js";
+import { material } from "react-native-typography";
 
 export default class Lobby extends Component {
   state = {
@@ -31,113 +29,174 @@ export default class Lobby extends Component {
   };
   render() {
     return (
-      <Container>
-        <Header transparent style={{backgroundColor: 'rgba(0,0,20,1)'}}>
+      <Container style={{ position: "relative" }}>
+        <Header
+          noShadow
+          style={{
+            backgroundColor: "rgba(0,0,0,0.5)",
+            zIndex: 1,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0
+          }}
+        >
           <Left>
-          <NewButton
-          containerStyle={{}}
-          style={{backgroundColor: 'rgba(0,0,0, 1)', height:40}}
-          onPress={this.toggleModal} >
-          <Icon name="hammer" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
+            <NewButton
+              style={{
+                backgroundColor: "rgba(0,0,0, 0)",
+                height: 60,
+                width: 80
+              }}
+              onPress={this.toggleModal}
+            >
+              <Icon name="hammer" style={{ color: "rgba(255,255,255,1)" }} />
+            </NewButton>
           </Left>
           <Body>
-            <Title
-              style={
-                (material.headline,
-                {color: 'rgba(255,255,255,1)', fontWeight: '900', fontSize: 26})
-              }>
-              Lobby
+            <Title>
+              <Text
+                style={
+                  (material.headline,
+                  {
+                    color: "rgba(0,255,255,1)",
+                    fontWeight: "900"
+                  })
+                }
+              >
+                L
+              </Text>
+              <Text
+                style={
+                  (material.headline,
+                  {
+                    color: "rgba(255,255,255,1)",
+                    fontWeight: "700"
+                  })
+                }
+              >
+                obby
+              </Text>
             </Title>
           </Body>
           <Right>
-        <NewButton
-          containerStyle={{}}
-          style={{backgroundColor: 'rgba(0,0,0, 1)', height:40}}
-          onPress={() => this.props.navigation.navigate("MySaves")}>
-          <Icon name="bookmark" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
+            <NewButton
+              style={{ backgroundColor: "rgba(0,0,0, 0)", height: 60 }}
+              onPress={() => this.props.navigation.navigate("MySaves")}
+            >
+              <Icon name="bookmark" style={{ color: "rgba(255,255,255,1)" }} />
+            </NewButton>
           </Right>
         </Header>
         <Content
           style={{
-            backgroundColor: 'rgba(0,0,20,0.8)',
+            backgroundColor: "rgba(0,0,20,0.8)",
             borderWidth: 0,
             flex: 1,
-          }}>
-
-        <Modal isVisible={this.state.isModalVisible} style = {{margin: 0}} useNativeDriver = {true}
-        onBackdropPress={() => this.setState({ isModalVisible: false })}
-        animationIn = 'zoomInLeft'
-        animationOut = 'zoomOutLeft'>
-        <View style={{ flex:1, flexDirection:'column'}}>
-        <TouchableOpacity style = {{flex: 1}} onPress={this.toggleModal}>
-          <View>
-          </View>
-          </TouchableOpacity>
-          <View >
-          <View style={{bottom: 10}}>
-          <NewButton
-          style={{backgroundColor: 'rgba(0,0,20, 1)', height:50, borderBottomWidth:3, borderBottomColor:'rgba(255,255,255,0.6)'}}
-          onPress={() => {this.props.navigation.navigate("MyPublish"),
-          this.toggleModal()
-          }}>
-          <Icon name="eye" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-          <NewText style={{color:'white', fontWeight: '900'}}>Ver Minhas Publicações</NewText>
-          <Icon name="eye" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
-          <NewButton
-          style={{backgroundColor: 'rgba(0,0,20, 1)', height:50, borderBottomWidth:3, borderBottomColor:'rgba(255,255,255,0.6)'}}
-          onPress={() => {this.props.navigation.navigate("MyMaterial"), this.toggleModal()}}>
-          <Icon name="eye" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-          <NewText style={{color:'white', fontWeight: '900'}}>Ver Meus Materiais</NewText>
-          <Icon name="eye" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
-        <NewButton
-          style={{backgroundColor: 'rgba(0,0,20, 1)', height:50, borderBottomWidth:3, borderBottomColor:'rgba(255,255,255,0.6)'}}
-          onPress={() => {this.props.navigation.navigate("DoPublish"), this.toggleModal()}}>
-          <Icon name="cloud-upload" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-          <NewText style={{color:'white', fontWeight: '900'}}>Fazer Publicação</NewText>
-          <Icon name="cloud-upload" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
-        <NewButton
-          style={{backgroundColor: 'rgba(0,0,20, 1)', height:50, borderBottomWidth:3, borderBottomColor:'rgba(255,255,255,0.6)'}}
-          onPress={() => {this.props.navigation.navigate("EditMaterial"), this.toggleModal()}}>
-          <Icon name="hammer" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-          <NewText style={{color:'white', fontWeight: '900'}}>Editar Material</NewText>
-          <Icon name="hammer" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
-        <NewButton
-          style={{backgroundColor: 'rgba(0,0,20, 1)', height:50, borderBottomWidth:3, borderBottomColor:'rgba(255,255,255,0.6)'}}
-          onPress={() => {this.props.navigation.navigate("BuildMaterial"), this.toggleModal()}}>
-          <Icon name="hammer" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-          <NewText style={{color:'white', fontWeight: '900'}}>Criar Material</NewText>
-          <Icon name="hammer" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
-        </View>
-        <View style={{height:10, backgroundColor:'rgba(0,0,0,0)'}}>
-        </View>
-        <NewButton
-          style={{backgroundColor: 'rgba(0,0,20, 1)', height:60, borderBottomWidth:3, borderBottomColor:'rgba(255,255,255,0.6)'}}
-          onPress={this.toggleModal}>
-          <Icon name="close-circle" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-          <NewText style={{color:'white', fontWeight: '900'}}>Exit</NewText>
-          <Icon name="close-circle" style={{color: 'rgba(100,00,255,1)', fontSize: 30}} />
-        </NewButton>
-          </View>
-        </View>
-        </Modal>
+            zIndex: -1
+          }}
+          showsVerticalScrollIndicator={false}
+        >
+          <Modal
+            isVisible={this.state.isModalVisible}
+            style={{ margin: 0 }}
+            useNativeDriver={true}
+            hideModalContentWhileAnimating = {true}
+          >
+            <View style={{ flex: 1, flexDirection: "column" }}>
+              <TouchableOpacity style={{ flex: 1 }} onPress={this.toggleModal}>
+                <View />
+              </TouchableOpacity>
+              <View style={{ bottom: 10 }}>
+                  <CajehButton
+                    icon="eye"
+                    name="See my Publishments"
+                    redirect={this.props.navigation.navigate}
+                    screen="MyPublish"
+                    hide={this.toggleModal}
+                  />
+                  <CajehButton
+                    icon="eye"
+                    name="See my Materials"
+                    redirect={this.props.navigation.navigate}
+                    screen="MyMaterial"
+                    hide={this.toggleModal}
+                  />
+                  <CajehButton
+                    icon="cloud-upload"
+                    name="Upload a Publishment"
+                    redirect={this.props.navigation.navigate}
+                    screen="DoPublish"
+                    hide={this.toggleModal}
+                  />
+                  <CajehButton
+                    icon="hammer"
+                    name="Edit Material"
+                    redirect={this.props.navigation.navigate}
+                    screen="EditMaterial"
+                    hide={this.toggleModal}
+                  />
+                  <CajehButton
+                    icon="hammer"
+                    name="Build Material"
+                    redirect={this.props.navigation.navigate}
+                    screen="BuildMaterial"
+                    hide={this.toggleModal}
+                  />
+                </View>
+                <NewButton
+                  style={{
+                    backgroundColor: "rgba(0,0,0, 0.5)",
+                    height: 60,
+                    borderBottomWidth: 3,
+                    borderBottomColor: "rgba(255,255,255,0.6)"
+                  }}
+                  onPress={this.toggleModal}
+                >
+                  <Icon
+                    name="close-circle"
+                    style={{ color: "rgba(255,255,255,1)"}}
+                  />
+                  <NewText style={{ color: "white", fontWeight: "700" }}>
+                    Exit
+                  </NewText>
+                  <Icon
+                    name="close-circle"
+                    style={{ color: "rgba(255,255,255,1)"}}
+                  />
+                </NewButton>
+              </View>
+          </Modal>
           {/* Mudar a Cor do Lobby da Rede, variar e vender para o usuário escolher */}
-          <Publish />
-          <Publish />
+          <View style={{ top: 60 }}>
+            <Publish
+              collaboratorImage="https://facebook.github.io/react-native/docs/assets/favicon.png"
+              collaboratorName="Cajeh"
+              collaboratorNote="@danielcajeh"
+              publishSaves={20}
+              publishComments={4}
+              publishTimeAgo={11}
+            />
+            <Publish
+              collaboratorImage="https://facebook.github.io/react-native/docs/assets/favicon.png"
+              collaboratorName="Neo"
+              collaboratorNote="@dixMatrix"
+              publishSaves={15}
+              publishComments={2}
+              publishTimeAgo={15}
+            />
+            <View style={{ height: 60 }} />
+          </View>
         </Content>
         <Fab
-          direction="up"
-          containerStyle={{}}
-          style={{backgroundColor: 'rgba(0,0,20,1)', height:70, width: 150, right: 90}}
+          style={{
+            backgroundColor: "rgba(0,0,0,0.3)",
+            height: 70
+          }}
           position="bottomRight"
-          onPress={() => this.props.navigation.navigate("Material")}>
-          <Text style={{fontFamily:'Permanent Marker', color: 'rgba(255,220,0,1)'}}>Refresh</Text>
+          onPress={() => this.props.navigation.navigate("Lobby")}
+        >
+          <Icon name="planet" style={{ color: "rgba(255,255,255,1)" }} />
         </Fab>
       </Container>
     );
