@@ -16,7 +16,7 @@ import {
 } from "native-base";
 import { Text, View, TouchableOpacity } from "react-native";
 import Modal from "react-native-modal";
-import CajehButton from "../Components/CajehButton.js";
+import CajehButton from "../Components/Lookers/CajehButton.js";
 import { material } from "react-native-typography";
 
 export default class Lobby extends Component {
@@ -24,8 +24,11 @@ export default class Lobby extends Component {
     isModalVisible: false
   };
 
-  toggleModal = () => {
-    this.setState({ isModalVisible: !this.state.isModalVisible });
+  showModal = () => {
+    this.setState({ isModalVisible: true });
+  };
+  hideModal = () => {
+    this.setState({ isModalVisible: false });
   };
   render() {
     return (
@@ -44,7 +47,7 @@ export default class Lobby extends Component {
           <Left>
             <NewButton
               style={{ backgroundColor: "rgba(0,0,0, 0)", height: 60, width:80 }}
-              onPress={this.toggleModal}
+              onPress={this.showModal}
             >
               <Icon name="hammer" style={{ color: "rgba(255,255,255,1)" }} />
             </NewButton>
@@ -74,7 +77,7 @@ export default class Lobby extends Component {
                 ublishment
               </Text>
             </Title>
-            <Subtitle>build</Subtitle>
+            <Subtitle>upload</Subtitle>
           </Body>
           <Right>
             <NewButton
@@ -99,9 +102,11 @@ export default class Lobby extends Component {
             style={{ margin: 0 }}
             useNativeDriver={true}
             hideModalContentWhileAnimating = {true}
+            animationIn= 'fadeInUp'
+            animationOut= 'fadeOutDown'
           >
             <View style={{ flex: 1, flexDirection: "column" }}>
-              <TouchableOpacity style={{ flex: 1 }} onPress={this.toggleModal}>
+              <TouchableOpacity style={{ flex: 1 }} onPress={this.hideModal}>
                 <View />
               </TouchableOpacity>
               <View style={{ bottom: 10 }}>
@@ -110,52 +115,52 @@ export default class Lobby extends Component {
                     name="See my Publishments"
                     redirect={this.props.navigation.navigate}
                     screen="MyPublish"
-                    hide={this.toggleModal}
+                    hide={this.hideModal}
                   />
                   <CajehButton
                     icon="eye"
                     name="See my Materials"
                     redirect={this.props.navigation.navigate}
                     screen="MyMaterial"
-                    hide={this.toggleModal}
+                    hide={this.hideModal}
                   />
                   <CajehButton
                     icon="cloud-upload"
                     name="Upload a Publishment"
                     redirect={this.props.navigation.navigate}
                     screen="DoPublish"
-                    hide={this.toggleModal}
+                    hide={this.hideModal}
                   />
                   <CajehButton
                     icon="hammer"
                     name="Edit Material"
                     redirect={this.props.navigation.navigate}
                     screen="EditMaterial"
-                    hide={this.toggleModal}
+                    hide={this.hideModal}
                   />
                   <CajehButton
                     icon="hammer"
                     name="Build Material"
                     redirect={this.props.navigation.navigate}
                     screen="BuildMaterial"
-                    hide={this.toggleModal}
+                    hide={this.hideModal}
                   />
                 </View>
                 <NewButton
                   style={{
                     backgroundColor: "rgba(0,0,0, 0.5)",
-                    height: 60,
+                    height: 50,
                     borderBottomWidth: 3,
                     borderBottomColor: "rgba(255,255,255,0.6)"
                   }}
-                  onPress={this.toggleModal}
+                  onPress={this.hideModal}
                 >
                   <Icon
                     name="close-circle"
                     style={{ color: "rgba(255,255,255,1)"}}
                   />
                   <NewText style={{ color: "white", fontWeight: "700" }}>
-                    Exit
+                    Close
                   </NewText>
                   <Icon
                     name="close-circle"

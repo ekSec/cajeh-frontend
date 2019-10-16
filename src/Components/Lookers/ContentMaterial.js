@@ -5,8 +5,6 @@ import {
 } from 'react-native'
 import {iOSUIKit} from 'react-native-typography';
 
-
-
 export default class ContentMaterial extends Component {
   render () {
     return (
